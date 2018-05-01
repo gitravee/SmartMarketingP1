@@ -1,0 +1,78 @@
+<div>
+    <div *ngIf="isMongoShow">
+        <div class="toggel" (click)="toggel();">switch</div>
+  <form #userForm="ngForm"   (ngSubmit)="onSave(userForm.value)" novalidate>  
+    <p>Is "myForm" valid? {{userForm.valid}}</p>  
+   <table border='1'>  
+  <tr>  
+  <td #selectElem class="testing">name</td>  
+  <td>   
+      <input name="id" type="hidden"     [(ngModel)]="id" />  
+       <input name="name" type="text"  required  [(ngModel)]="name" />  
+    
+   </td>  
+  </tr>  
+    
+  <tr>  
+      <td>address</td>  
+      <td>    <input name="address" required  type="text"   [(ngModel)]="address" /></td>  
+      </tr>  
+      <tr>  
+          <td colspan="2">  
+      <input type="submit" value="{{valbutton}}" />  
+      </td>  
+      </tr>  
+   </table>  
+  </form>   
+    
+  <table border='1'>  
+    
+    <tr>  
+      <td>Id</td>  
+      <td>Name</td>  
+      <td>Address</td>  
+      <td>Edit</td>  
+      <td>Delete</td>  
+    </tr>  
+    <tr *ngFor="let kk of Repdata;let ind = index">  
+         
+      <td>{{ind + 1}}</td>  
+      <td>{{kk.name}}</td>  
+      <td>{{kk.address}}</td>  
+      <td><a (click)="edit(kk)" style="color:blueviolet">Edit</a></td>  
+      <td><a (click)="delete(kk._id)" style="color:blueviolet">Delete</a>  </td>  
+    </tr>  
+  </table>  
+  
+  <br />
+  
+  <h2>Popup</h2>
+  
+  <div class="popup" (click)="myFunction()">Click me to toggle the popup!
+    <span class="popuptext" id="myPopup">A Simple Popup!</span>
+  </div>
+  </div>
+  
+  <!-- Login page -->
+  <div *ngIf="isMongoShow == false">
+  <div class="login">
+   <div class="main">
+        <div class="logo-section">
+          <div class="logo"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="main-panel">
+          <div class="body-panel">
+            <div class="login-panel">
+              <input type="text" placeholder="Username" class="text user-icon login-text">
+              <input type="password" placeholder="Password" class="text pwd-icon pwd-text">
+              <div class="button active first-btn" (click)="login();">Login</div>
+              <div class="button reg-btn">Registration</div>
+              <div class="button reset-pwd">Reset Password ?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

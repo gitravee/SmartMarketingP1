@@ -1,0 +1,45 @@
+<div class="banner">
+  <div class="container">
+    <h1>Admin</h1>
+  </div>
+</div>
+<div class="admin-section">
+  <div class="container">
+  <!-- <div class="admin-section">
+    <div class="admin-img"></div>
+    <div class="admin-container">
+      <div class="tabs">
+        <div class="tab-enterprice">Enterprice</div>
+        <div class="tab-small"></div>
+        <div class="tab-advisor">Advisor</div>
+        <div class="tab-empty"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="sections">
+        <div *ngFor="let tag of tags; let index=index" class="section" [class.active]="tag.type =='active'">{{tag.name}}</div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div> -->
+
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="enterprice-tab" data-toggle="tab" href="#enterprice" role="tab" aria-controls="enterprice" aria-selected="true">Enterprice</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="advisor-tab" data-toggle="tab" href="#advisor" role="tab" aria-controls="advisor" aria-selected="false">Advisor</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="enterprice" role="tabpanel" aria-labelledby="enterprice-tab">
+        <div class="tab-content clearfix">
+          <div *ngFor="let tag of tags; let index=index" class="section" [class.active]="tag.type =='active'">{{tag.name}}</div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="advisor" role="tabpanel" aria-labelledby="advisor-tab">
+        Advisor section is is under maintenance.
+      </div>
+    </div>
+  </div>
+</div>

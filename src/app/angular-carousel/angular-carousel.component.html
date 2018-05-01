@@ -1,0 +1,11 @@
+<app-carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+  <app-slide *ngFor="let slide of slides; let index=index" [active]="slide.active">
+    <!-- <div class="slide" [style.backgroundImage]="'url('+ slide.image +')'"> -->
+      <img [src]="slide.image" style="margin:auto; width:100%;">
+      <div class="carousel-caption">
+        <h3>{{slide.header}}</h3>
+        <h4>{{slide.text}} <span class="link" *ngIf="slide.subtext"><a href="slide.link">{{slide.subtext}} &nbsp;&nbsp;<img src="../../assets/Images/lengthrightarrow.png" /></a></span></h4>
+      </div>
+    <!-- </div> -->
+  </app-slide>
+</app-carousel>

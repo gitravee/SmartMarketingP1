@@ -1,0 +1,36 @@
+.slide {
+  min-height: 430px;
+}
+.carousel-caption {
+  left: 0;
+  right: 0;
+  text-align: left;
+  padding: 16px 35px;
+  background: #73c167;
+  bottom: 0;
+  h3 {
+    font-family: Flexo-Demi;
+    font-size: 20px;
+    line-height: 1;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  h4 {
+    font-family: Flexo-Light;
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    margin: 0;
+    .link {
+      margin-left: 20px;
+      a {
+        font-family: Roboto;
+        font-weight: 300;
+        line-height: normal;
+        font-size: 14px;
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+  }
+}

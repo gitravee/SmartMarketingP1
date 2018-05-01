@@ -1,0 +1,88 @@
+//Fonts
+/* DEFAULTS
+----------------------------------------------------------*/
+
+@font-face {
+    font-family: 'Flexo-Demi';
+    src: url('./assets/Fonts/Flexo-Demi.otf');
+}
+
+@font-face {
+    font-family: 'Flexo-Light';
+    src: url('./assets/Fonts/Flexo-Light.otf');
+}
+
+@font-face {
+    font-family: 'Flexo-Medium';
+    src: url('./assets/Fonts/Flexo-Medium.otf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Fonts/Roboto-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Fonts/Roboto-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Fonts/Roboto-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./assets/Fonts/Helvetica.ttc');
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+html {
+  height: 100%;
+}
+
+body{
+  margin: 0px;
+  font-size: 14px;
+  font-family: Roboto;
+  font-weight: 400;
+  color: #63666a;
+  position: relative;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  // background-position: center;
+  background-size: cover;
+}
+
+.clear{
+    clear: both;
+}
+
+p {
+  line-height: 1.4;
+}
+
+a {
+  text-decoration: underline;
+  color: #63666a;
+  &:hover {
+    text-decoration: none;
+    color: #63666a;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1210px;
+  }
+}
+
+.info{
+  text-align: center;
+  margin-top: 15%;
+}

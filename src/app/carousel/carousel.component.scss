@@ -1,0 +1,47 @@
+.carousel {
+  a.left.carousel-control {
+    background-image: url(../../assets/images/leftarrow.png);
+    position: absolute;
+    left: 20px;
+    top: 48%;
+    transform: translateY(-48%);
+    width: 37px;
+    height: 38px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  a.right.carousel-control {
+    background-image: url(../../assets/images/rightarrow.png);
+    position: absolute;
+    right: 20px;
+    top: 48%;
+    transform: translateY(-48%);
+    width: 37px;
+    height: 38px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  ol.carousel-indicators {
+    width: auto;
+    top: 16px;
+    right: 20px;
+    left: auto;
+    margin: 0;
+    bottom: auto;
+    li {
+      background: url("../../assets/Images/nonactivebanner.png");
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      cursor: pointer;
+      &:after, &:before {
+        content: none;
+      }
+    }
+    li.active {
+      background: url("../../assets/Images/activeban.png");
+    }
+  }
+}

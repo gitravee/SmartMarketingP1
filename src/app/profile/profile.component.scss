@@ -1,0 +1,92 @@
+.banner {
+  height: 181px;
+  background-image: url('../../assets/Images/my-profile-panel.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 40px;
+  .container {
+    height: 100%;
+    display: table;
+  }
+  h1 {
+    font-family: Flexo-Light;
+    font-size: 48px;
+    color: #ffffff;
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 30px;
+  }
+}
+
+.profile-section {
+  padding-bottom: 20px;
+  .tab-wrapper {
+    position: relative;
+    padding-left: 200px;
+  }
+  .main-content .nav-pills {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 201px;
+    margin-right: -1px;
+  }
+  .main-content .tab-content {
+    // float: left;
+    // width: 980px;
+    background-color: #ffffff;
+    border: solid 1px #e1e1e1;
+  }
+  .advisor-image {
+    text-align: center;
+  }
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #ffffff;
+    border: solid 1px #e1e1e1;
+    border-radius: 0;
+    border-right: none;
+    color: #000000;
+  }
+  .nav-pills .nav-link {
+    text-decoration: none;
+    font-family: Flexo-Demi;
+    font-size: 16px;
+    color: #81a1b6;
+    text-align: center;
+    p{
+      margin: 10px 0 0;
+    }
+    img {
+      margin-top: 5px;
+    }
+  }
+  .tab-pane {
+    min-height: 500px;
+    padding: 30px;
+  }
+  .contact-info-form {
+    label {
+      font-family: 'HelveticaNeue', sans-serif;
+      font-size: 14px;
+      color: #729db6;
+    }
+    .value {
+      font-family: 'HelveticaNeue', sans-serif;
+      font-size: 14px;
+      color: #000000;
+      padding-top: calc(.375rem + 1px);
+      padding-bottom: calc(.375rem + 1px);
+      padding-left: 15px;
+    }
+    .form-control {
+      border: solid 1px #cccccc;
+      border-radius: 0;
+      font-family: 'HelveticaNeue', sans-serif;
+      font-size: 14px;
+      color: #000000;
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+  }
+}
