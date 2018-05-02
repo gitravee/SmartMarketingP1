@@ -16,7 +16,7 @@ import { HelpComponent } from '../help/help.component';
 
 const homeRoutes: Routes = [
     {
-      path: '',
+      path: 'home',
       component: HomeComponent,
       children: [
         {

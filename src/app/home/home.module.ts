@@ -17,10 +17,12 @@ import { AlertsComponent } from '../alerts/alerts.component';
 import { ResearchComponent } from '../research/research.component';
 import { SeminarsComponent } from '../seminars/seminars.component';
 import { HelpComponent } from '../help/help.component';
+import {ChartModule} from 'primeng/chart';
+import { DataTableModule } from 'primeng/datatable';
 
 @NgModule({
   imports: [
-    CommonModule,HomeRoutingModule
+    CommonModule,HomeRoutingModule,ChartModule,DataTableModule
   ],
   declarations: [HomeComponent, AdminComponent,
     ProfileComponent,

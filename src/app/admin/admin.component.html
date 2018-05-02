@@ -1,6 +1,6 @@
 <div class="banner">
   <div class="container">
-    <h1>Admin</h1>
+    <h1>Administration</h1>
   </div>
 </div>
 <div class="admin-section">
@@ -22,24 +22,40 @@
     </div>
   </div> -->
 
-
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="enterprice-tab" data-toggle="tab" href="#enterprice" role="tab" aria-controls="enterprice" aria-selected="true">Enterprice</a>
+        <a class="nav-link" [class.active]="isActive" id="enterprice-tab" data-toggle="tab" href="#enterprice" role="tab" aria-controls="enterprice" aria-selected="true">Enterprise</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="advisor-tab" data-toggle="tab" href="#advisor" role="tab" aria-controls="advisor" aria-selected="false">Advisor</a>
+        <a class="nav-link" [class.active]="!isActive" id="advisor-tab" data-toggle="tab" href="#advisor" role="tab" aria-controls="advisor" aria-selected="false">User</a>
       </li>
     </ul>
+    <div class="tab-section">
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="enterprice" role="tabpanel" aria-labelledby="enterprice-tab">
+      <div class="tab-pane fade" [ngClass]="{'active show' : isActive}" id="enterprice" role="tabpanel" aria-labelledby="enterprice-tab">
         <div class="tab-content clearfix">
-          <div *ngFor="let tag of tags; let index=index" class="section" [class.active]="tag.type =='active'">{{tag.name}}</div>
+        <div *ngFor="let tag of tags; let index=index">
+          <div class="section">
+            <div class="sec-img" [style.backgroundImage]="'url('+ tag.imageUrl +')'"></div>
+            <div class="sec-text" [class.active]="tag.type =='active'">{{tag.name}}</div>
+          </div>
+        </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="advisor" role="tabpanel" aria-labelledby="advisor-tab">
-        Advisor section is is under maintenance.
+      <div class="tab-pane fade" [ngClass]="{'active show' : !isActive}" id="advisor" role="tabpanel" aria-labelledby="advisor-tab">
+        <div class="tab-content clearfix">
+          <!-- <div *ngFor="let tag of tags; let index=index" class="section" [style.backgroundImage]="'url('+ tag.imageUrl +')'" [class.active]="tag.type =='active'">{{tag.name}}</div> -->
+          <div *ngFor="let tag of tags; let index=index">
+              <div class="section">
+                <div class="sec-img" [style.backgroundImage]="'url('+ tag.imageUrl +')'"></div>
+                <div class="sec-text" [class.active]="tag.type =='active'">{{tag.name}}</div>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
+  </div>
+  <div class="clear"></div>
+  <div style="height:80px;"></div>
 </div>

@@ -1,1 +1,117 @@
-<div class="info">Client page is under maintenance.</div>
+<div class="banner">
+  <div class="container">
+    <h1>Clients</h1>
+  </div>
+</div>
+<div class="clients-wrapper section">
+  <div class="container">
+    <div class="tab-dots">
+      <div class="tab-item" [class.active]="activeTab === 1">
+        <a class="tab-link" (click)="selectTab('clients')">
+          <span class="nav-dot"></span>
+          <span class="nav-text">Clients</span>
+        </a>
+      </div>
+      <div class="tab-item" [class.active]="activeTab === 2">
+        <a class="tab-link" (click)="selectTab('aum')">
+          <span class="nav-dot"></span>
+          <span class="nav-text">AUM</span>
+        </a>
+      </div>
+      <div class="tab-item" [class.active]="activeTab === 3">
+        <a class="tab-link" (click)="selectTab('investor-profile')">
+          <span class="nav-dot"></span>
+          <span class="nav-text">Investor Profile</span>
+        </a>
+      </div>
+      <div class="tab-item" [class.active]="activeTab === 4">
+        <a class="tab-link" (click)="selectTab('investor-preferences')">
+          <span class="nav-dot"></span>
+          <span class="nav-text">Investor Preferences</span>
+        </a>
+      </div>
+    </div>
+    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" [class.active]="activeTab === 1" (click)="selectTab('clients')" id="clients-tab" data-toggle="tab" href="#clients" role="tab" aria-controls="clients" aria-selected="true">Clients</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 2" (click)="selectTab('aum')" id="aum-tab" data-toggle="tab" href="#aum" role="tab" aria-controls="aum" aria-selected="false">AUM</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 3" (click)="selectTab('investor-profile')" id="investor-profile-tab" data-toggle="tab" href="#investor-profile" role="tab" aria-controls="investor-profile" aria-selected="false">Investor Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 4" (click)="selectTab('investor-preferences')" id="investor-preferences-tab" data-toggle="tab" href="#investor-preferences" role="tab" aria-controls="investor-preferences" aria-selected="false">Investor Preferences</a>
+      </li>
+    </ul> -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" [ngClass]="{'show active': activeTab === 1}" id="clients" role="tabpanel" aria-labelledby="clients-tab">
+        <p-dataTable [value]="clientDetails" (onRowSelect)="clientsRowSelect($event)" [responsive]="true" virtualScroll="virtualScroll" [lazy]="true" [loading]="loading" [totalRecords]="clientsTotalRecords" (onLazyLoad)="loadClientsLazy($event)" scrollable="true" scrollHeight="212px" [rows]="2.5">
+          <p-column [style]="{'width':'35px'}" selectionMode="multiple"></p-column>
+          <p-column field="client_number" header="Client Id" [sortable]="false"></p-column>
+          <p-column field="acct_first_name" header="Name" [sortable]="false"></p-column>
+          <p-column field="acct_address_line_1" header="Address" [sortable]="false"></p-column>
+          <p-column field="phone_number" header="Phone" [sortable]="false"></p-column>
+          <p-column field="email_address" header="Email" [sortable]="false"></p-column>
+        </p-dataTable>
+        <div class="buttons-wrapper">
+          <button class="btn btn-primary clients-button">Campaign</button>
+        </div>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': activeTab === 2}" id="aum" role="tabpanel" aria-labelledby="aum-tab">
+        <p-dataTable [value]="aumDetails" (onRowSelect)="aumRowSelect($event)" virtualScroll="virtualScroll" [lazy]="true" [loading]="loading" [totalRecords]="aumTotalRecords" (onLazyLoad)="loadAumLazy($event)" scrollable="true" scrollHeight="212px" [rows]="2.5">
+          <p-column [style]="{'width':'35px'}" selectionMode="single"></p-column>
+          <p-column field="client_number" header="Client Id" [sortable]="false"></p-column>
+          <p-column field="first_name" header="Name" [sortable]="false"></p-column>
+          <p-column field="cash" header="Cash ($)" [sortable]="false"></p-column>
+          <p-column field="stocks" header="Stocks ($)" [sortable]="false"></p-column>
+          <p-column field="bonds" header="Bonds ($)" [sortable]="false"></p-column>
+          <p-column field="col_401K" header="401K ($)" [sortable]="false"></p-column>
+          <p-column field="total_acc_balance" header="Total Balance ($)" [sortable]="false"></p-column>
+          <p-column field="month_1" header="1 Month" [sortable]="false"></p-column>
+          <p-column field="year_1" header="1 Year" [sortable]="false"></p-column>
+          <p-column field="year_2" header="2 Year" [sortable]="false"></p-column>
+        </p-dataTable>
+        <br />
+        <div class="charts row">
+          <div class="col-sm-6">
+            <p-chart *ngIf="pieData" type="pie" [data]="pieData"></p-chart>
+          </div>
+          <div class="col-sm-6">
+            <p-chart *ngIf="dataBar" type="bar" [data]="dataBar"></p-chart>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': activeTab === 3}" id="investor-profile" role="tabpanel" aria-labelledby="investor-profile-tab">
+        <p-dataTable [value]="investorProfileDetails" [responsive]="true" virtualScroll="virtualScroll" [lazy]="true" [loading]="loading" [totalRecords]="investorProfileTotalRecords" (onLazyLoad)="loadInvestorProfileLazy($event)" scrollable="true" scrollHeight="212px" [rows]="2.5">
+          <p-column field="client_number" header="Client Id" [sortable]="false"></p-column>
+          <p-column field="First_Name" header="Name" [sortable]="false"></p-column>
+          <p-column field="age_2_yr_increments" header="Age - 2 Yr Increments" [sortable]="false"></p-column>
+          <p-column field="education" header="Education" [sortable]="false"></p-column>
+          <p-column field="occupation" header="Occupation" [sortable]="false"></p-column>
+          <p-column field="home_type" header="Homeowner / Renter" [sortable]="false"></p-column>
+          <p-column field="marital_status" header="Marital Status" [sortable]="false"></p-column>
+          <p-column field="presence_of_children" header="Presence of Children" [sortable]="false"></p-column>
+          <p-column field="children_age_ranges" header="Children's Age Ranges" [sortable]="false"></p-column>
+          <p-column field="income" header="Income - Higher Ranges" [sortable]="false"></p-column>
+          <p-column field="home_market_value" header="Home Market Value ($)" [sortable]="false"></p-column>
+        </p-dataTable>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': activeTab === 4}" id="investor-preferences" role="tabpanel" aria-labelledby="investor-preferences-tab">
+        <p-dataTable [value]="investorPreferencesDetails" [responsive]="true" virtualScroll="virtualScroll" [lazy]="true" [loading]="loading" [totalRecords]="investorPreferencesTotalRecords" (onLazyLoad)="loadInvestorPreferencesLazy($event)" scrollable="true" scrollHeight="212px" [rows]="2.5">
+          <p-column field="client_number" header="Client Id" [sortable]="false"></p-column>
+          <p-column field="First_Name" header="Name" [sortable]="false"></p-column>
+          <p-column field="investment" header="Investment - Stocks/Bonds" [sortable]="false"></p-column>
+          <p-column field="travel" header="Travel" [sortable]="false"></p-column>
+          <p-column field="real_estate_interest" header="Real Estate Interest" [sortable]="false"></p-column>
+          <p-column field="potential_inheritor" header="Potential Inheritor" [sortable]="false"></p-column>
+          <p-column field="adults_wealthy_parent" header="Adults with Wealthy Parent" [sortable]="false"></p-column>
+          <p-column field="discretionary_income" header="Discretionary Income ($)" [sortable]="false"></p-column>
+          <p-column field="disposable_income" header="Disposable Income ($)" [sortable]="false"></p-column>
+          <p-column field="total_liquid_investible_assets" header="Total Liquid Investible Assets ($)" [sortable]="false"></p-column>
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

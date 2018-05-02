@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-md navbar-light">
       <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand" routerLink="/dashboard"><img src="../../assets/Images/Logo.png" alt="Logo"></a>
+        <a class="navbar-brand" routerLink="./dashboard"><img src="../../assets/Images/Logo.png" alt="Logo"></a>
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,33 +22,33 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+              <a class="nav-link" routerLink="./dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Admin</a>
+              <a class="nav-link" routerLink="./admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Admin</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Profile</a>
+              <a class="nav-link" routerLink="./profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Clients</a>
+              <a class="nav-link" routerLink="./client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Clients</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" routerLink="/prospects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Prospects</a>
+              <a class="nav-link dropdown-toggle" routerLink="./prospects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Prospects</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" routerLink="/campaign" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Campaign</a>
+              <a class="nav-link dropdown-toggle" routerLink="./campaign" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Campaign</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/reports" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Reports</a>
+              <a class="nav-link" routerLink="./reports" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Reports</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle">More</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" routerLink="/alerts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Alerts</a>
-                <a class="dropdown-item" routerLink="/research" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Research</a>
-                <a class="dropdown-item" routerLink="/seminars" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Seminars</a>
-                <a class="dropdown-item" routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help Center</a>
+                <a class="dropdown-item" routerLink="./alerts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Alerts</a>
+                <a class="dropdown-item" routerLink="./research" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Research</a>
+                <a class="dropdown-item" routerLink="./seminars" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Seminars</a>
+                <a class="dropdown-item" routerLink="./help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help Center</a>
                 <a class="dropdown-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Sign Out</a>
               </div>
             </li>
@@ -59,15 +59,40 @@
   </div>
 </div>
 <router-outlet></router-outlet>
-<div style="padding-top: 60px;"></div>
+<div style="padding-top: 167px;"></div>
+<div class="breadcrumb-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div routerLink="./dashboard" *ngIf="ishome != ''" class="bread-home">{{ishome}}</div>
+        <div class="bread-mid"><i class="fa fa-angle-right"></i></div>
+        <div *ngIf="isother != ''" class="bread-last">{{isother}}</div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <p class="footer-menu"><a href="#">About Us</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="#">Legal</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="#">Fees</a></p>
-      </div>
-      <div class="col-md-6 text-right">
         <p class="copyright">&copy; 2018 Acxiom</p>
+      </div>
+      <div class="col-md-8">
+        <div class="row social-icons">
+          <div class="col-sm-4">
+            <h3><a href="#"><i class="fa fa-facebook"></i> &nbsp;Facebook</a></h3>
+            <p>Interact with us and learn about investing and personal finance. Join the conversation!</p>
+          </div>
+          <div class="col-sm-4">
+            <h3><a href="#"><i class="fa fa-twitter"></i> &nbsp;Twitter</a></h3>
+            <p>Get the latest news and insights about investing, personal finance, the economy, and more.</p>
+          </div>
+          <div class="col-sm-4">
+            <h3><a href="#"><i class="fa fa-google-plus"></i> &nbsp;Google+</a></h3>
+            <p>Find information on our core beliefs and investing principles.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

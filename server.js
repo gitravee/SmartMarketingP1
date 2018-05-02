@@ -2,6 +2,8 @@ var express = require('express');
 var path = require("path");   
 var bodyParser = require('body-parser');  
 var mongo = require("mongoose");  
+var multer = require('multer');
+var path = require('path');
   
 var db = mongo.connect("mongodb://localhost:27017/Acxiom", function(err, response){  
    if(err){ console.log( err); }  
@@ -30,8 +32,6 @@ var UsersSchema = new Schema({
  address: { type: String   },   
 },{ versionKey: false });  
 
-
-  
 var model = mongo.model('users', UsersSchema, 'users');  
   
 app.post("/api/SaveUser",function(req,res){   
@@ -90,20 +90,7 @@ var ClientSchema = new Schema({
     email_address: { type: String   },   
    },{ versionKey: false });  
 
-  var clientModel = mongo.model('clients', UsersSchema, 'clients');  
-  var aumModel = mongo.model('aum', UsersSchema, 'aum');  
-  app.get("/api/getClients",function(req,res){  
-    clientModel.find({},function(err,data){  
-              if(err){  
-                  res.send(err);  
-              }  
-              else{ 
-                  res.send(data);  
-                  }  
-          });  
-  })  
-
-  var aumSchema = new Schema({
+var aumSchema = new Schema({
     client_number: { type: String   },       
     cash: { type: String   },       
     stocks: { type: String   },       
@@ -114,19 +101,6 @@ var ClientSchema = new Schema({
     year_1: { type: String   },       
     year_2: { type: String   },       
 });
-
-var aumModel = mongo.model('aum', UsersSchema, 'aum');  
-app.get("/api/getAum",function(req,res){  
-    aumModel.find({},function(err,data){  
-            if(err){  
-                res.send(err);  
-            }  
-            else{ 
-                res.send(data);  
-                }  
-        });  
-})  
-
 var investorprefSchema = new Schema({
     client_number: { type: String   },       
     investment: { type: String   },       
@@ -138,19 +112,6 @@ var investorprefSchema = new Schema({
     disposable_income: { type: String   },       
     total_liquid_investible_assets: { type: String   },  
 });
-
-var investorprefModel = mongo.model('investorpref', investorprefSchema, 'investorpref');  
-app.get("/api/getinvestorpref",function(req,res){  
-    investorprefModel.find({},function(err,data){  
-            if(err){  
-                res.send(err);  
-            }  
-            else{ 
-                res.send(data);  
-                }  
-        });  
-})  
-
 var investorprofileSchema = new Schema({
     age_2_yr_increments: { type: String   },       
     education: { type: String   },       
@@ -163,9 +124,26 @@ var investorprofileSchema = new Schema({
     home_market_value: { type: String   },  
 });
 
-var investorprofileModel = mongo.model('investorprofile', investorprofileSchema, 'investorprofile');  
-app.get("/api/getinvestorprofile",function(req,res){  
-    investorprofileModel.find({},function(err,data){  
+var clientModel = mongo.model('clients', UsersSchema, 'clients');  
+var aumModel = mongo.model('aum', UsersSchema, 'aum');  
+var investorprefModel = mongo.model('investorpref', investorprefSchema, 'investorpref'); 
+var investorprofileModel = mongo.model('investorprofile', investorprofileSchema, 'investorprofile'); 
+
+app.get("/api/getClients",function(req,res){  
+    clientModel.find({},function(err,data){  
+              if(err){  
+                  res.send(err);  
+              }  
+              else{ 
+                  res.send(data);  
+                  }  
+          });  
+  })  
+
+app.get("/api/getAum/:id*?",function(req,res){  
+    aumModel.find(
+        req.params.id !== undefined ? {"client_number": req.params.id} : {},
+        function(err,data){  
             if(err){  
                 res.send(err);  
             }  
@@ -175,7 +153,65 @@ app.get("/api/getinvestorprofile",function(req,res){
         });  
 })  
 
+
+app.get("/api/getinvestorpref/:id*?",function(req,res){  
+    investorprefModel.find(
+        req.params.id !== undefined ? {"client_number": req.params.id} : {},
+        function(err,data){  
+            if(err){  
+                res.send(err);  
+            }  
+            else{ 
+                res.send(data);  
+                }  
+        });  
+})  
+
+ 
+app.get("/api/getinvestorprofile/:id*?",function(req,res){  
+    investorprofileModel.find(
+        req.params.id !== undefined ? {"client_number": req.params.id} : {},
+        function(err,data){  
+            if(err){  
+                res.send(err);  
+            }  
+            else{ 
+                res.send(data);  
+                }  
+        });  
+})  
   
+app.use(express.static(path.join(__dirname, 'uploads')));
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+   cb(null, './src/profilepic/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+var upload = multer({ storage: storage });
+
+app.post("/api/upload", upload.array("uploads[]", 12), function (req, res) {
+  console.log('files', req.files);
+  res.send(req.files);
+});
+
+app.get('/api/profileImage', nocache, sendContent);
+function sendContent(req, res) {
+    var str = path.join(__dirname, 'src\\profilepic') + '\\profile-avatar.jpg';
+    console.log('profileImage api', str);
+    res.sendFile(str);
+};
+
+function nocache(req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    next();
+  }
   
 app.listen(8080, function () {  
     

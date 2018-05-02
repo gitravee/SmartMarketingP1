@@ -11,7 +11,7 @@ export enum Direction {UNKNOWN, NEXT, PREV}
 })
 export class CarouselComponent {
 
-  private slides: Array<SlideComponent> = [];
+  public slides: Array<SlideComponent> = [];
   private currentInterval: any;
   private isPlaying: boolean;
   private destroyed: boolean = false;
@@ -83,7 +83,7 @@ export class CarouselComponent {
     return !this.currentSlide ? 0 : this.currentSlide.index;
   }
 
-  private next() {
+  public next() {
     let newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
 
     if (newIndex === 0 && this.noWrap) {
@@ -94,7 +94,7 @@ export class CarouselComponent {
     return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
   }
 
-  private prev() {
+  public prev() {
     let newIndex = this.getCurrentIndex() - 1 < 0 ? this.slides.length - 1 : this.getCurrentIndex() - 1;
 
     if (this.noWrap && newIndex === this.slides.length - 1) {

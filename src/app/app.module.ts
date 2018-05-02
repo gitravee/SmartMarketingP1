@@ -12,6 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { Router } from '@angular/router';
 import { AppRoutingModule }        from './app-routing.module';
 import { HomeModule } from './home/home.module';
+import {ChartModule} from 'primeng/chart';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DataTableModule} from 'primeng/datatable';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,7 @@ import { HomeModule } from './home/home.module';
    
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,AppRoutingModule,HomeModule 
+    BrowserModule,HttpModule,FormsModule,AppRoutingModule,HomeModule,ChartModule,BrowserAnimationsModule,DataTableModule
   ],
   providers: [CommonService],
   bootstrap: [AppComponent]
