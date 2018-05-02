@@ -52,7 +52,11 @@
   }
 
 .profile-pic{
-    height: 350px;
+    
+  height: 600px;
+  border-radius: 50%;
+  /* border: red 1px solid; */
+  width: 600px;
 }
 .profile-text{
   font-size: 18px;
